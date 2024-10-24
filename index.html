@@ -1,0 +1,215 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>BMI Calculator</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-image: url('https://img.freepik.com/premium-photo/fitness-equipment-workout_522560-19444.jpg');
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .calculator {
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      padding: 32px;
+      text-align: center;
+      width: 320px;
+    }
+
+    .calculator h2 {
+      color: #4c4e56;
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 32px;
+    }
+
+    .calculator input {
+      background-color: #f6f8fa;
+      border: 1px solid #c2c2c2;
+      border-radius: 4px;
+      margin-bottom: 16px;
+      padding: 12px;
+      width: 90%;
+      font-size: 18px;
+    }
+
+    .calculator button {
+      background-color: #4caf50;
+      border: none;
+      border-radius: 4px;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 700;
+      padding: 12px 20px;
+      text-transform: capitalize;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .calculator button:hover {
+      background-color: #449747;
+    }
+
+    #result {
+      margin-top: 32px;
+      font-size: 24px;
+      font-weight: 700;
+      word-wrap: break-word;
+    }
+
+    .health-goal {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .health-goal-muscle-gain {
+      color: orange;
+    }
+
+    .tips {
+      margin-top: 20px;
+      text-align: left;
+      font-size: 16px;
+      color: #333;
+    }
+
+    .tips h3 {
+      margin-bottom: 10px;
+      font-size: 18px;
+      color: #444;
+    }
+
+    .tips ul {
+      padding-left: 20px;
+    }
+
+    .tips ul li {
+      margin-bottom: 8px;
+    }
+
+    .click-here {
+      color: #4caf50;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="calculator">
+    <h2>BMI Calculator</h2>
+    <form id="bmi-form">
+      <input type="number" id="height" placeholder="Your height (cm)">
+      <input type="number" id="weight" placeholder="Your weight (kg)">
+      <input type="number" id="age" placeholder="Your age">
+      <button type="submit" id="calculate-bmi">Calculate BMI</button>
+    </form>
+    <div id="result"></div>
+    <div id="lifestyle-tips" class="tips"></div>
+  </div>
+
+  <script>
+    document.getElementById('bmi-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const height = document.getElementById('height').value;
+      const weight = document.getElementById('weight').value;
+      const age = document.getElementById('age').value;
+      const bmi = (weight / Math.pow(height / 100, 2)).toFixed(1);
+      let result = '';
+      let tips = '';
+
+      if (bmi < 18.5) {
+        result = 'You are underweight.';
+        tips = `
+          <h3>Recommendations for Underweight:</h3>
+          <ul>
+            <li><strong>Exercise:</strong> Focus on strength training exercises like:
+              <ul>
+                <li>Weightlifting (bench press, deadlift, squats)</li>
+                <li>Bodyweight exercises (push-ups, pull-ups, planks)</li>
+                <li>Yoga for flexibility and balance</li>
+              </ul>
+              <span> <a href="final_page2(MG).html" class="click-here">Click Here for more exercises</a> </span>
+            </li>
+            <li><strong>Nutrition Plan:</strong>
+              <ul>
+                <li>High-calorie foods like nuts (almonds, cashews), seeds, and avocados.</li>
+                <li>Protein-rich foods such as paneer, chicken, fish, and legumes (dal, chana).</li>
+                <li>Incorporate calorie-dense snacks like peanut butter on whole grain bread or energy bars.</li>
+                <li>Frequent meals including parathas, rice dishes with added ghee, and curries with healthy fats.</li>
+              </ul>
+              <span ><a href="day_2musclegain.html" class="click-here">Click Here for detailed nutrition plans </a> </span>
+            </li>
+            <li><strong>Advice:</strong> Try eating smaller, frequent meals throughout the day and avoid skipping meals.</li>
+          </ul>
+        `;
+        document.getElementById('result').style.color = 'green';
+      } else if (bmi >= 18.5 && bmi <= 24.9) {
+        result = 'You are a healthy weight.';
+        tips = `
+          <h3>Recommendations for Normal Weight:</h3>
+          <ul>
+            <li><strong>Exercise:</strong> Maintain a balanced workout routine, such as:
+              <ul>
+                <li>Cardio (jogging, swimming, cycling)</li>
+                <li>Strength training (dumbbell workouts, resistance bands)</li>
+                <li>Flexibility exercises (yoga, Pilates)</li>
+              </ul>
+              <span> <a href="final_page2(MG).html" class="click-here">Click Here for more exercises</a> </span>
+            </li>
+            <li><strong>Nutrition Plan:</strong>
+              <ul>
+                <li>Well-balanced diet including seasonal vegetables, fruits, lean proteins (paneer, fish), and whole grains (brown rice, quinoa).</li>
+                <li>Include traditional Indian foods like dosa, idli, roti, and sabzi.</li>
+                <li>Ensure you’re getting a good mix of macronutrients while staying hydrated.</li>
+              </ul>
+              <span> <a href="day_2musclegain.html" class="click-here">Click Here for detailed nutrition plans </a> </span>
+            </li>
+            <li><strong>Advice:</strong> Stay hydrated and aim for regular physical activity to keep your health in check.</li>
+          </ul>
+        `;
+        document.getElementById('result').style.color = 'green';
+      } else if (bmi > 24.9) {
+        result = 'You are overweight.';
+        tips = `
+          <h3>Recommendations for Overweight:</h3>
+          <ul>
+            <li><strong>Exercise:</strong> Focus on exercises that help with weight loss, such as:
+              <ul>
+                <li>Cardio (brisk walking, cycling, HIIT)</li>
+                <li>Low-impact exercises (swimming, elliptical trainer)</li>
+                <li>Strength training (light weightlifting, resistance training)</li>
+              </ul>
+              <span> <a href="final_page1(WL).html" class="click-here">Click Here for more exercises</a></span>
+            </li>
+            <li><strong>Nutrition Plan:</strong>
+              <ul>
+                <li>Control portion sizes and gradually reduce calorie intake.</li>
+                <li>Increase your intake of fiber-rich foods such as whole grains, vegetables (like spinach, broccoli), and fruits.</li>
+                <li>Opt for lean proteins like chicken breast, fish, legumes, and low-fat dairy products.</li>
+                <li>Avoid sugary drinks, fried foods, and high-calorie snacks; choose baked or steamed options instead.</li>
+              </ul>
+              <span> <a href="weight_loss_veg.html" class="click-here">Click Here for detailed nutrition plans</a> </span>
+            </li>
+            <li><strong>Advice:</strong> Set realistic goals and aim for regular physical activity while maintaining a balanced diet.</li>
+          </ul>
+        `;
+        document.getElementById('result').style.color = 'green';
+      }
+
+      document.getElementById('result').innerHTML = `Your BMI is ${bmi}, ${result}`;
+      document.getElementById('lifestyle-tips').innerHTML = tips;
+    });
+  </script>
+</body>
+</html>
